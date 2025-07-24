@@ -1,50 +1,61 @@
-# Welcome to your Expo app 👋
+# EcoRoute Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native prototype for eco-friendly route planning, built with Expo and Expo Router.
 
-## Get started
+---
+
+ 🚀 Quick Start
 
 1. Install dependencies
-
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. Run the app
    ```bash
    npx expo start
    ```
+   - Open in Android/iOS simulator or Expo Go as prompted.
 
-In the output, you'll find options to open the app in a
+3. Mock Server
+   - No separate mock server is required. Mock data is loaded directly from a local JSON file.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+ 📦 Mock Data
+- Location: `assets/routes.json`
+- Loading Method:
+  - The app imports mock route data directly using ES module import:
+    ```js
+    import routesData from '@/assets/routes.json';
+    ```
+  - No network request is made; this ensures instant, reliable access to mock data for development and testing.
 
-## Get a fresh project
+---
 
-When you're ready, run:
+ 🛠️ Design Decisions
+- Framework: React Native (Expo) for rapid cross-platform development.
+- Navigation: [Expo Router](https://docs.expo.dev/router/introduction/) for file-based routing and modern navigation patterns.
+- State Management: React hooks and context (no heavy libraries for simplicity).
+- Networking: Direct import of mock data; ready for swap to `axios`/`fetch` for real API.
+- Project Structure:
+  - `/app/(tabs)/` — main screens (Input, Results)
+  - `/assets/` — static assets, including `routes.json`
+  - `/components/` — reusable UI widgets
+  - `/constants/`, `/hooks/` — theming and utilities
+- Styling: Consistent spacing, accessible touch targets, and clear feedback for loading/errors.
 
-```bash
-npm run reset-project
-```
+---
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+ 🚧 Next Steps: Roadmap to Production
+To evolve EcoRoute into a production-grade app, several enhancements are recommended:
 
-## Learn more
+- Real API Integration: Replace the local JSON import with API calls using `axios` or `fetch`. Implement error handling, loading states, and retry logic for robust networking.
+- Caching & Offline Support: Add local caching (e.g., with AsyncStorage or react-query) to improve performance and enable offline access to recent routes.
+- Authentication: Integrate secure user authentication (OAuth, JWT, or Firebase Auth) to personalize routes and save user preferences.
+- Map Features: Expand the Map Preview screen with real route polylines, live location, and interactive markers using `react-native-maps`.
+- Testing: Add unit and integration tests for components, screens, and services to ensure reliability.
+- CI/CD: Set up continuous integration and deployment pipelines (e.g., GitHub Actions, Expo EAS) for automated testing and app delivery.
+- Accessibility & UX: Further refine accessibility, animations, and polish for a delightful user experience.
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+By following this roadmap, EcoRoute can become a scalable, secure, and user-friendly app ready for real-world deployment.
